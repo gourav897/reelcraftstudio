@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ReelCraftStudio — Cinematic Video Editing</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --gold:#C9A84C;--gold2:#E8D5A3;--gold3:rgba(201,168,76,0.15);
+  --bg:#070707;--s1:#0E0E0E;--s2:#141414;--s3:#1C1C1C;
+  --bd:rgba(201,168,76,0.12);--bd2:rgba(201,168,76,0.25);
+  --t:#FFFDF7;--tm:rgba(255,253,247,0.55);--ts:rgba(255,253,247,0.3);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--t);overflow-x:hidden;}
+.wrap{max-width:480px;margin:0 auto;padding:0 0 80px;}
+
+nav{display:flex;justify-content:space-between;align-items:center;padding:22px 24px;border-bottom:0.5px solid var(--bd);}
+.logo{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);text-decoration:none;}
+.logo em{font-style:normal;color:var(--t);opacity:0.4;}
+.nav-links{display:flex;gap:20px;align-items:center;}
+.nav-links a{font-size:11px;color:var(--tm);text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-hire{border:0.5px solid var(--gold) !important;color:var(--gold) !important;padding:6px 14px;border-radius:2px;}
+
+.hero{padding:56px 24px 48px;}
+.hero-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:24px;}
+.dot-live{width:5px;height:5px;background:var(--gold);border-radius:50%;animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.2;}}
+.eyebrow-text{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;line-height:1.0;letter-spacing:-1px;margin-bottom:6px;color:var(--t);}
+.hero h1 strong{font-weight:600;font-style:italic;color:var(--gold);}
+.hero-sub{font-size:13px;color:var(--tm);line-height:1.7;max-width:320px;margin:20px 0 32px;font-weight:300;}
+.hero-ctas{display:flex;gap:10px;flex-wrap:wrap;}
+.cta-main{background:var(--gold);color:#070707;border:none;padding:13px 26px;font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:opacity 0.2s;text-decoration:none;display:inline-block;}
+.cta-main:hover{opacity:0.85;}
+.cta-ghost{background:transparent;color:var(--t);border:0.5px solid rgba(255,253,247,0.2);padding:13px 22px;font-family:'Space Grotesk',sans-serif;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:border-color 0.2s,color 0.2s;text-decoration:none;display:inline-block;}
+.cta-ghost:hover{border-color:var(--gold);color:var(--gold);}
+
+.stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:0.5px solid var(--bd);border-bottom:0.5px solid var(--bd);}
+.stat{padding:22px 24px;text-align:center;border-right:0.5px solid var(--bd);}
+.stat:last-child{border-right:none;}
+.stat-n{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:600;color:var(--gold);line-height:1;display:block;margin-bottom:4px;}
+.stat-l{font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ts);}
+
+.section{padding:48px 24px 0;}
+.s-label{font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.s-head{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--t);letter-spacing:-0.5px;margin-bottom:32px;line-height:1.1;}
+.s-head em{font-style:italic;color:var(--gold);}
+
+.projects{display:flex;flex-direction:column;}
+.proj{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;padding:18px 0;border-bottom:0.5px solid var(--bd);cursor:pointer;transition:opacity 0.2s;text-decoration:none;}
+.proj:hover{opacity:0.7;}
+.proj-num{font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--ts);font-weight:300;width:20px;}
+.proj-info{display:flex;flex-direction:column;gap:3px;}
+.proj-title{font-size:15px;font-weight:500;color:var(--t);letter-spacing:-0.2px;}
+.proj-meta{font-size:10px;color:var(--tm);letter-spacing:0.06em;text-transform:uppercase;}
+.proj-thumb{width:56px;height:100px;border-radius:4px;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.pt1{background:linear-gradient(160deg,#1a0800,#4a1800);}
+.pt2{background:linear-gradient(160deg,#00081a,#001a4a);}
+.pt3{background:linear-gradient(160deg,#0a001a,#280055);}
+.pt4{background:linear-gradient(160deg,#001208,#003320);}
+.play-icon{width:20px;height:20px;border:0.5px solid rgba(201,168,76,0.6);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;color:var(--gold);}
+
+.pricing{display:flex;flex-direction:column;}
+.pkg{padding:22px 0;border-bottom:0.5px solid var(--bd);display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start;}
+.pkg.hot .pkg-name{color:var(--gold);}
+.pkg-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--t);letter-spacing:-0.3px;margin-bottom:6px;}
+.pkg-tag{display:inline-block;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;padding:3px 8px;border:0.5px solid var(--gold);color:var(--gold);border-radius:1px;margin-bottom:10px;}
+.pkg-features{display:flex;flex-direction:column;gap:5px;}
+.pkg-feat{font-size:12px;color:var(--tm);display:flex;align-items:center;gap:6px;}
+.feat-dot{width:3px;height:3px;background:var(--gold);border-radius:50%;flex-shrink:0;}
+.pkg-btn{display:inline-block;margin-top:12px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);border:none;border-bottom:0.5px solid var(--gold);padding-bottom:2px;cursor:pointer;background:transparent;font-family:'Space Grotesk',sans-serif;}
+.pkg-price{text-align:right;}
+.price-amt{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;color:var(--t);line-height:1;}
+.price-unit{font-size:10px;color:var(--ts);letter-spacing:0.06em;text-transform:uppercase;margin-top:3px;}
+
+.reviews{display:flex;flex-direction:column;}
+.rv{padding:24px 0;border-bottom:0.5px solid var(--bd);}
+.rv-stars{display:flex;gap:2px;margin-bottom:12px;}
+.rv-star{width:10px;height:10px;background:var(--gold);clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);}
+.rv-text{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:300;font-style:italic;color:var(--t);line-height:1.55;margin-bottom:14px;opacity:0.9;}
+.rv-by{display:flex;align-items:center;gap:10px;}
+.rv-av{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;flex-shrink:0;}
+.a1{background:rgba(201,168,76,0.12);color:var(--gold);}
+.a2{background:rgba(93,202,165,0.12);color:#5DCAA5;}
+.a3{background:rgba(212,83,126,0.12);color:#D4537E;}
+.a4{background:rgba(55,138,221,0.12);color:#378ADD;}
+.rv-name{font-size:12px;font-weight:500;color:var(--t);}
+.rv-loc{font-size:10px;color:var(--ts);}
+
+.rv-form{background:var(--s1);border:0.5px solid var(--bd);border-radius:4px;padding:24px;margin-top:24px;}
+.rf-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--t);margin-bottom:4px;}
+.rf-sub{font-size:12px;color:var(--ts);margin-bottom:20px;}
+.rf-label{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ts);display:block;margin-bottom:6px;}
+.rf-inp{width:100%;background:var(--bg);border:0.5px solid rgba(255,253,247,0.1);border-radius:2px;color:var(--t);font-family:'Space Grotesk',sans-serif;font-size:13px;padding:10px 12px;outline:none;transition:border-color 0.2s;margin-bottom:14px;-webkit-appearance:none;appearance:none;}
+.rf-inp:focus{border-color:var(--gold);}
+.rf-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.star-row{display:flex;gap:6px;margin-bottom:14px;}
+.ssp{width:24px;height:24px;border:0.5px solid rgba(201,168,76,0.3);border-radius:2px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;color:var(--gold);transition:background 0.15s;background:transparent;font-family:inherit;}
+.ssp.on{background:rgba(201,168,76,0.15);border-color:var(--gold);}
+.rf-submit{background:var(--gold);color:#070707;border:none;padding:12px 24px;font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;border-radius:2px;margin-top:4px;}
+.rf-ok{display:none;margin-top:12px;font-size:12px;color:#5DCAA5;text-align:center;padding:10px;border:0.5px solid rgba(93,202,165,0.3);border-radius:2px;}
+
+.contact-section{margin:48px 0 0;padding:0 24px;}
+.ct-box{border:0.5px solid var(--bd2);border-radius:4px;padding:32px 28px;background:var(--s1);}
+.ct-head{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--t);letter-spacing:-0.5px;margin-bottom:6px;}
+.ct-sub{font-size:12px;color:var(--tm);margin-bottom:24px;}
+.ct-btns{display:flex;gap:10px;flex-wrap:wrap;}
+
+footer{padding:28px 24px 0;border-top:0.5px solid var(--bd);margin-top:48px;display:flex;justify-content:space-between;align-items:center;}
+.f-logo{font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);}
+.f-copy{font-size:10px;color:var(--ts);}
+
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+@media(max-width:500px){
+  .rf-row{grid-template-columns:1fr;}
+  .hero h1{font-size:40px;}
+  .nav-links a:not(.nav-hire){display:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <nav>
+    <a href="#" class="logo">Reel<em>Craft</em>Studio</a>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact" class="nav-hire">Hire me</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-eyebrow">
+      <div class="dot-live"></div>
+      <span class="eyebrow-text">Available for projects</span>
+    </div>
+    <h1>Reels that<br><strong>stop the scroll.</strong></h1>
+    <p class="hero-sub">Cinematic video editing for creators, brands &amp; businesses &mdash; crafted to go viral. Based in Hyderabad. Working globally.</p>
+    <div class="hero-ctas">
+      <a href="#contact" class="cta-main">Get a quote</a>
+      <a href="#pricing" class="cta-ghost">View pricing</a>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="stat"><span class="stat-n">500K+</span><span class="stat-l">Reel views</span></div>
+    <div class="stat"><span class="stat-n">20+</span><span class="stat-l">Projects</span></div>
+    <div class="stat"><span class="stat-n">5.0</span><span class="stat-l">Avg rating</span></div>
+  </div>
+
+  <section class="section" id="work">
+    <div class="s-label">Selected work</div>
+    <div class="s-head">Recent <em>projects</em></div>
+    <div class="projects">
+      <a class="proj" href="#" target="_blank">
+        <div class="proj-num">01</div>
+        <div class="proj-info">
+          <div class="proj-title">Glam Studio Launch</div>
+          <div class="proj-meta">Salon promo &middot; Cinematic &middot; 45s</div>
+        </div>
+        <div class="proj-thumb pt1"><div class="play-icon">&#9654;</div></div>
+      </a>
+      <a class="proj" href="#" target="_blank">
+        <div class="proj-num">02</div>
+        <div class="proj-info">
+          <div class="proj-title">Urban Fashion Drop</div>
+          <div class="proj-meta">Brand video &middot; Trending &middot; 30s</div>
+        </div>
+        <div class="proj-thumb pt2"><div class="play-icon">&#9654;</div></div>
+      </a>
+      <a class="proj" href="#" target="_blank">
+        <div class="proj-num">03</div>
+        <div class="proj-info">
+          <div class="proj-title">Travel Montage &mdash; Dubai</div>
+          <div class="proj-meta">Creator reel &middot; Color grade &middot; 60s</div>
+        </div>
+        <div class="proj-thumb pt3"><div class="play-icon">&#9654;</div></div>
+      </a>
+      <a class="proj" href="#" target="_blank">
+        <div class="proj-num">04</div>
+        <div class="proj-info">
+          <div class="proj-title">Fitness Brand Promo</div>
+          <div class="proj-meta">Product video &middot; High energy &middot; 20s</div>
+        </div>
+        <div class="proj-thumb pt4"><div class="play-icon">&#9654;</div></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="section" id="pricing">
+    <div class="s-label">Packages</div>
+    <div class="s-head">Clear, <em>honest</em> pricing</div>
+    <div class="pricing">
+      <div class="pkg">
+        <div>
+          <div class="pkg-name">Starter</div>
+          <div class="pkg-features">
+            <div class="pkg-feat"><div class="feat-dot"></div>1 reel up to 60s</div>
+            <div class="pkg-feat"><div class="feat-dot"></div>Basic color grade</div>
+            <div class="pkg-feat"><div class="feat-dot"></div>Captions + audio sync</div>
+            <div class="pkg-feat"><div class="feat-dot"></div>2 revisions &middot; 72hr delivery</div>
+          </div>
+          <button class="pkg-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Book this &rarr;</button>
+        </div>
+        <div class="pkg-price">
+          <div class="price-amt">$15</div>
+          <div class="price-unit">per reel</div>
+        </div>
+      </div>
+      <div class="pkg hot">
+        <div>
+          <div class="pkg-name">Pro</div>
+          <div class="pkg-tag">Most popular</div>
+          <div class="pkg-features">
+            <div class="pkg-feat"><div class="feat-dot"></div>1 reel up to 90s</div>
+            <div class="pkg-feat"><div class="feat-dot"></div>Cinematic color grade</div>
+            <div class="pkg-feat"><div class="feat-dot"></div>Motion FX + masking</div>
+            <div class="pkg-feat"><div class="feat-dot"></div>Custom captions &middot; 3 revisions</div>
+            <div class="pkg-feat"><div class="feat-dot"></div>48hr priority delivery</div>
+          </div>
+          <button class="pkg-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Book this &rarr;</button>
+        </div>
+        <div class="pkg-price">
+          <div class="price-amt">$35</div>
+          <div class="price-unit">per reel</div>
+        </div>
+      </div>
+      <div class="pkg">
+        <div>
+          <div class="pkg-name">Agency</div>
+          <div class="pkg-features">
+            <div class="pkg-feat"><div class="feat-dot"></div>4 reels per month</div>
+            <div class="pkg-feat"><div class="feat-dot"></div>Full cinematic treatment</div>
+            <div class="pkg-feat"><div class="feat-dot"></div>Brand style consistency</div>
+            <div class="pkg-feat"><div class="feat-dot"></div>Unlimited revisions &middot; 24hr</div>
+          </div>
+          <button class="pkg-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Book this &rarr;</button>
+        </div>
+        <div class="pkg-price">
+          <div class="price-amt">$99</div>
+          <div class="price-unit">per month</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="reviews">
+    <div class="s-label">Client love</div>
+    <div class="s-head">What they <em>say</em></div>
+    <div class="reviews" id="rvList">
+      <div class="rv">
+        <div class="rv-stars"><div class="rv-star"></div><div class="rv-star"></div><div class="rv-star"></div><div class="rv-star"></div><div class="rv-star"></div></div>
+        <div class="rv-text">&ldquo;Gourav delivered exactly the cinematic vibe I wanted. My salon reel got 3&times; more enquiries within a week.&rdquo;</div>
+        <div class="rv-by"><div class="rv-av a1">SM</div><div><div class="rv-name">Smriti M.</div><div class="rv-loc">Hyderabad, India</div></div></div>
+      </div>
+      <div class="rv">
+        <div class="rv-stars"><div class="rv-star"></div><div class="rv-star"></div><div class="rv-star"></div><div class="rv-star"></div><div class="rv-star"></div></div>
+        <div class="rv-text">&ldquo;Super fast delivery and the color grade was incredible. Exactly what our brand needed for the Instagram launch.&rdquo;</div>
+        <div class="rv-by"><div class="rv-av a2">RK</div><div><div class="rv-name">Rahul K.</div><div class="rv-loc">Mumbai, India</div></div></div>
+      </div>
+      <div class="rv">
+        <div class="rv-stars"><div class="rv-star"></div><div class="rv-star"></div><div class="rv-star"></div><div class="rv-star"></div><div class="rv-star"></div></div>
+        <div class="rv-text">&ldquo;I&rsquo;ve tried multiple editors. ReelCraftStudio is on another level. Will always come back for cinematic work.&rdquo;</div>
+        <div class="rv-by"><div class="rv-av a3">AL</div><div><div class="rv-name">Alara L.</div><div class="rv-loc">Dubai, UAE</div></div></div>
+      </div>
+      <div class="rv">
+        <div class="rv-stars"><div class="rv-star"></div><div class="rv-star"></div><div class="rv-star"></div><div class="rv-star"></div><div class="rv-star"></div></div>
+        <div class="rv-text">&ldquo;My fitness brand reel hit 80k views. Professional, responsive and incredibly creative.&rdquo;</div>
+        <div class="rv-by"><div class="rv-av a4">JM</div><div><div class="rv-name">Jordan M.</div><div class="rv-loc">London, UK</div></div></div>
+      </div>
+    </div>
+
+    <div class="rv-form">
+      <div class="rf-title">Leave a review</div>
+      <p class="rf-sub">Worked with me? Tell the world.</p>
+      <div class="rf-row">
+        <div>
+          <label class="rf-label">Your name</label>
+          <input class="rf-inp" id="rn" type="text" placeholder="Sarah K." />
+        </div>
+        <div>
+          <label class="rf-label">Location</label>
+          <input class="rf-inp" id="rl" type="text" placeholder="London, UK" />
+        </div>
+      </div>
+      <label class="rf-label">Your review</label>
+      <textarea class="rf-inp" id="rt" rows="3" placeholder="What did you love about working with me?"></textarea>
+      <label class="rf-label">Rating</label>
+      <div class="star-row" id="sp">
+        <div class="ssp" data-v="1">&#9733;</div>
+        <div class="ssp" data-v="2">&#9733;</div>
+        <div class="ssp" data-v="3">&#9733;</div>
+        <div class="ssp" data-v="4">&#9733;</div>
+        <div class="ssp on" data-v="5">&#9733;</div>
+      </div>
+      <button class="rf-submit" onclick="submitRv()">Submit review</button>
+      <div class="rf-ok" id="rfOk">Thank you &mdash; your review has been added.</div>
+    </div>
+  </section>
+
+  <div class="contact-section" id="contact">
+    <div class="ct-box">
+      <div class="ct-head">Ready to go viral?</div>
+      <p class="ct-sub">Send your footage and let&rsquo;s build something cinematic together.</p>
+      <div class="ct-btns">
+        <a href="mailto:your@email.com" class="cta-main">Start a project</a>
+        <a href="https://instagram.com/reelcraftstudio" target="_blank" class="cta-ghost">Instagram &#8599;</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="f-logo">ReelCraftStudio</div>
+    <div class="f-copy">&copy; 2025 &middot; Hyderabad &middot; Global</div>
+  </footer>
+
+</div>
+
+<script>
+var rating = 5;
+document.querySelectorAll('.ssp').forEach(function(s) {
+  s.addEventListener('click', function() {
+    rating = parseInt(s.dataset.v);
+    document.querySelectorAll('.ssp').forEach(function(e, i) {
+      e.classList.toggle('on', i < rating);
+    });
+  });
+});
+var avCls = ['a1','a2','a3','a4'];
+function submitRv() {
+  var n = document.getElementById('rn').value.trim();
+  var l = document.getElementById('rl').value.trim();
+  var t = document.getElementById('rt').value.trim();
+  if (!n || !t) { alert('Please enter your name and review.'); return; }
+  var ini = n.split(' ').map(function(w){ return w[0]; }).join('').slice(0,2).toUpperCase();
+  var ac = avCls[Math.floor(Math.random() * 4)];
+  var stars = '';
+  for (var i = 0; i < rating; i++) { stars += '<div class="rv-star"></div>'; }
+  var card = document.createElement('div');
+  card.className = 'rv';
+  card.style.animation = 'fadeIn 0.4s ease';
+  card.innerHTML =
+    '<div class="rv-stars">' + stars + '</div>' +
+    '<div class="rv-text">&ldquo;' + t + '&rdquo;</div>' +
+    '<div class="rv-by">' +
+      '<div class="rv-av ' + ac + '">' + ini + '</div>' +
+      '<div>' +
+        '<div class="rv-name">' + n + '</div>' +
+        '<div class="rv-loc">' + (l || 'Verified client') + '</div>' +
+      '</div>' +
+    '</div>';
+  document.getElementById('rvList').appendChild(card);
+  document.getElementById('rn').value = '';
+  document.getElementById('rl').value = '';
+  document.getElementById('rt').value = '';
+  rating = 5;
+  document.querySelectorAll('.ssp').forEach(function(e, i) { e.classList.toggle('on', i < 5); });
+  var ok = document.getElementById('rfOk');
+  ok.style.display = 'block';
+  setTimeout(function(){ ok.style.display = 'none'; }, 3000);
+}
+</script>
+
+</body>
+</html>
